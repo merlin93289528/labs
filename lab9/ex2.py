@@ -16,10 +16,23 @@ base = {
     }
 }
 
-task = int(input('Введіть максимальний час за який має готуватись страва: '))
-result = []
-for food in base:
-    if base[food]['time'] <= task:
-        result.append(food)
+while True:
+    task = input('Виберіть дію:\n1. Записати рецепт\n2. Знайти рецепт за максимальним часом\n')
+    if task == '1':
 
-print(result)
+        label = input('Введіть назву блюда: ')
+        base[label] = {}
+        base[label]['count_el'] = int(input('Введіть кількість інгрідієнтів блюда: '))
+        base[label]['elements'] = input('Введіть інгрідіенти через пробіл: ').split(' ')
+        base[label]['time'] = int(input('Введіть час готовки: '))
+
+    elif task == '2':
+
+        maxtime = int(input('Введіть максимальний час приготування: '))
+
+        result = []
+        for food in base:
+            if base[food]['time'] <= maxtime:
+                result.append(food)
+
+        print(result)
